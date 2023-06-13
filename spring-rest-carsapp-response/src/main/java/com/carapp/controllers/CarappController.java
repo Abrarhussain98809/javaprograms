@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,8 +36,13 @@ public class CarappController {
 		return ResponseEntity.status(HttpStatus.CREATED).headers(httpHeaders).build();
 		
 	}
+//	@PutMapping("/cars")
+//	ResponseEntity<Void> updateAllCar(@RequestBody Car car) {
+//		carService.updateCar(car.getcarId(),car.getPrice());
+//		return ResponseEntity.accepted().build();
+//	}
 	@PatchMapping("/cars/carId/{carId}/price/{price}")
-	ResponseEntity<Void> updateCar(int carId,double price) {
+	ResponseEntity<Void> updateCar(@PathVariable("carId") int carId,@PathVariable("price") double price) {
 		carService.updateCar(carId, price);
 		return ResponseEntity.accepted().build();
 	}
@@ -104,7 +110,7 @@ public class CarappController {
 		return ResponseEntity.ok(cars);
 		
 	}
-	@GetMapping("/books/brand/{brand}/model/{model}")
+	@GetMapping("/cars/brand/{brand}/model/{model}")
 	ResponseEntity<List<Car>> getByBrandAndModel(@PathVariable("brand") String brand,@PathVariable("model") String model){
 		List<Car> cars=carService.getByBrandAndModel(brand, model);
 		HttpHeaders httpHeaders=new HttpHeaders();

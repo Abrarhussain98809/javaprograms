@@ -19,39 +19,39 @@ public class CarRepositoryImpl implements ICarRepository {
 
 	@Override
 	public void addCar(Car car) {
-		String sql="insert into car(id,brand,model,year,color,mileage,price,bodyType,fuelType,transmission,kmsRun) values(?,?,?,?,?,?,?,?,?,?,?)";
-		Object[] carArray= {car.getId(),car.getBrand(),car.getModel(),car.getYear(),car.getColor(),car.getMileage(),car.getPrice() ,car.getBodyType(),car.getFuelType(),car.getTransmission(),car.getKmsRun()};
+		String sql=Queries.INSERTQUERY;
+		Object[] carArray= {car.getcarId(),car.getBrand(),car.getModel(),car.getYear(),car.getColor(),car.getMileage(),car.getPrice() ,car.getBodyType(),car.getFuelType(),car.getTransmission(),car.getKmsRun()};
 		jdbcTemplate.update(sql,carArray);
 	}
 
 	@Override
 	public void updateCar(int carId, double price) {
-		String sql="update car set price=? where carId=?";
+		String sql=Queries.UPDATEQUERY;
 		jdbcTemplate.update(sql,price,carId);
 		
 	}
 
 	@Override
 	public void deleteCar(int carId) {
-		String sql="delete from car where carId=?";
+		String sql=Queries.DELETEQUERY;
 		jdbcTemplate.update(sql,carId);
 		
 	}
 
 	@Override
 	public List<Car> findAll() {
-		String sql="select * from car";
+		String sql=Queries.FINDALL;
 		return jdbcTemplate.query(sql, new CarMapper());
 	}
 
 	@Override
 	public Optional<Car> findById(int carId) {
-		String sql="select * from car where carId=?";
+		String sql=Queries.FINDBYID;
 		Car ncar=null;
 		try {
 			ncar=jdbcTemplate.queryForObject(sql, (rs,rowNum)->{
 				Car car=new Car();
-				car.setId(rs.getInt("carId"));
+				car.setcarId(rs.getInt("carId"));
 				car.setBrand(rs.getString("brand"));
 				car.setModel(rs.getString("model"));
 				car.setYear(rs.getDouble("year"));
@@ -75,37 +75,37 @@ public class CarRepositoryImpl implements ICarRepository {
 
 	@Override
 	public List<Car> findByBrand(String brand) {
-		String sql="select * from car where brand=?";
+		String sql=Queries.FINDBYBRAND;
 		return jdbcTemplate.query(sql,new CarMapper(),brand);
 	}
 
 	@Override
 	public List<Car> findByPriceLessThan(double price) {
-		String sql="select * from car where price < ?";
+		String sql=Queries.FINDBYPRICELESSTHAN;
 		return jdbcTemplate.query(sql,new CarMapper(),price);
 	}
 
 	@Override
 	public List<Car> findByColor(String color) {
-		String sql="select * from car where color=?";
+		String sql=Queries.FINDBYCOLOR;
 		return jdbcTemplate.query(sql,new CarMapper(),color);
 	}
 
 	@Override
 	public List<Car> findByFuelType(String fuelType) {
-		String sql="select * from car where fuelType=?";
+		String sql=Queries.FINDBYFUELTYPE;
 		return jdbcTemplate.query(sql,new CarMapper(),fuelType);
 	}
 
 	@Override
 	public List<Car> findByYear(String year) {
-		String sql="select * from car where year=?";
+		String sql=Queries.FINDBYYEAR;
 		return jdbcTemplate.query(sql,new CarMapper(),year);
 	}
 
 	@Override
 	public List<Car> findByBrandAndModel(String brand, String model) {
-		String sql="select * from car where brand=? and model=?";
+		String sql=Queries.FINDBYBRANDANDMODEL;
 		return jdbcTemplate.query(sql,new CarMapper(),brand,model);
 	}
 

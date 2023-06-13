@@ -12,7 +12,7 @@ public class CarMapper implements RowMapper<Car>{
 	@Override
 	public Car mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Car car=new Car();
-		car.setId(rs.getInt("id"));
+		car.setcarId(rs.getInt("carId"));
 		car.setBrand(rs.getString("brand"));
 		car.setModel(rs.getString("model"));
 		car.setYear(rs.getDouble("year"));

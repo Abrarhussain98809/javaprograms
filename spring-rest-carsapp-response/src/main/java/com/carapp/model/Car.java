@@ -1,7 +1,7 @@
 package com.carapp.model;
 
 public class Car {
-	private Integer id;
+	private Integer carId;
 	private String brand;
 	private String model;
 	private double year;
@@ -16,10 +16,10 @@ public class Car {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Car(Integer id, String brand, String model, double year, String color, String mileage, double price,
+	public Car(Integer CarId, String brand, String model, double year, String color, String mileage, double price,
 			String bodyType, String fuelType, String transmission, double kmsRun) {
 		super();
-		this.id = id;
+		this.carId = carId;
 		this.brand = brand;
 		this.model = model;
 		this.year = year;
@@ -31,11 +31,11 @@ public class Car {
 		this.transmission = transmission;
 		this.kmsRun = kmsRun;
 	}
-	public Integer getId() {
-		return id;
+	public Integer getcarId() {
+		return carId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setcarId(Integer carId) {
+		this.carId = carId;
 	}
 	public String getBrand() {
 		return brand;
@@ -99,7 +99,7 @@ public class Car {
 	}
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", brand=" + brand + ", model=" + model + ", year=" + year + ", color=" + color
+		return "Car [carId=" + carId + ", brand=" + brand + ", model=" + model + ", year=" + year + ", color=" + color
 				+ ", mileage=" + mileage + ", price=" + price + ", bodyType=" + bodyType + ", fuelType=" + fuelType
 				+ ", transmission=" + transmission + ", kmsRun=" + kmsRun + "]";
 	}
